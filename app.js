@@ -26,6 +26,12 @@ app.use('/', require('./routes/index'));
 app.use('/api/v1/users', require('./routes/users'));
 app.use('/api/v1/products', require('./routes/products'));
 app.use('/api/v1/categories', require('./routes/categories'));
+const usersRouter = require('./routes/users');
+const rolesRouter = require('./routes/roles');
+
+
+app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/roles', rolesRouter);
 
 
 // catch 404 and forward to error handler
@@ -45,3 +51,10 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+
+const mongoose = require("mongoose");
+
+mongoose.connect("mongodb://127.0.0.1:27017/buoi5")
+.then(() => console.log("MongoDB connected"))
+.catch(err => console.log(err));
